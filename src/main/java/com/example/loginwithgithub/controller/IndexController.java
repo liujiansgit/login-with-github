@@ -47,7 +47,7 @@ public class IndexController {
     public ModelAndView goHome(String code) {
         ModelAndView mode = new ModelAndView();
         //根据拿到的code取得access_token 令牌
-        log.info("code=" + code);
+        log.info("授权码code={}", code);
         PyHttpRequestVo pyHttpRequestVo = new PyHttpRequestVo();
         HashMap<String, Object> paramMap = new HashMap<>();
         paramMap.put("code", code);
