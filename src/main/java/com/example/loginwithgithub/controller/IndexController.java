@@ -20,12 +20,12 @@ public class IndexController {
     /**
      * 客户端id
      */
-    private static String clientId = "7e015d8ce32370079895";
+    private static String clientId = "284077303de65f843231";
 
     /**
      * 客户端秘钥(一般存储在服务端保证安全)
      */
-    private static String clientSecret = "2b976af0e6b6ceea2b1554aa31d1fe94ea692cd9";
+    private static String clientSecret = "0287cc3d43bd4a6fa60bfa352186949582e16a9b";
 
     /**
      * 首页

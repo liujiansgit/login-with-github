@@ -15,7 +15,7 @@ name=${name } welcome!
 
 <script>
     // （第三方网站注册的）客户端id
-    client_id = '7e015d8ce32370079895';
+    client_id = '284077303de65f843231';
     // github 授权地址
     authorize_uri = 'https://github.com/login/oauth/authorize';
     // 回调网址 即本地地址
