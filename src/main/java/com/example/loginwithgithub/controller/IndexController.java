@@ -1,9 +1,9 @@
 package com.example.loginwithgithub.controller;
 
+import com.example.loginwithgithub.util.HttpClient;
+import com.example.loginwithgithub.util.HttpRequestVo;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.pystandard.webutils.client.PyHttpClient;
-import com.pystandard.webutils.client.PyHttpRequestVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -48,7 +48,7 @@ public class IndexController {
         ModelAndView mode = new ModelAndView();
         //根据拿到的code取得access_token 令牌
         log.info("授权码code={}", code);
-        PyHttpRequestVo pyHttpRequestVo = new PyHttpRequestVo();
+        HttpRequestVo pyHttpRequestVo = new HttpRequestVo();
         HashMap<String, Object> paramMap = new HashMap<>();
         paramMap.put("code", code);
         paramMap.put("client_id", clientId);
@@ -56,7 +56,7 @@ public class IndexController {
         pyHttpRequestVo.setParams(paramMap);
         //获取令牌的接口
         pyHttpRequestVo.setUrl("https://github.com/login/oauth/access_token");
-        String tokenResponse = PyHttpClient.doPostByJsonParam(pyHttpRequestVo);
+        String tokenResponse = HttpClient.doPostByJsonParam(pyHttpRequestVo);
         log.info("tokenResponse------------------------------->{}", tokenResponse);
         String accessToken = "";
         if (!StringUtils.isEmpty(tokenResponse)) {
@@ -65,7 +65,7 @@ public class IndexController {
         }
 
         //获取令牌后向github api请求数据
-        PyHttpRequestVo apiRequest = new PyHttpRequestVo();
+        HttpRequestVo apiRequest = new HttpRequestVo();
         HashMap<String, String> headMap = new HashMap<>();
         headMap.put("Authorization", "token " + accessToken);
         headMap.put("accept", "application/json");
@@ -73,7 +73,7 @@ public class IndexController {
         //获取用户信息
 //        apiRequest.setUrl("https://api.github.com/users/momodiy");
         apiRequest.setUrl("https://api.github.com/user");
-        String apiResponse = PyHttpClient.doGet(apiRequest);
+        String apiResponse = HttpClient.doGet(apiRequest);
         log.info("apiResponse---------------------->{}", apiResponse);
 
         if (!StringUtils.isEmpty(apiResponse)) {
